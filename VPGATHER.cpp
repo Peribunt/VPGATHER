@@ -110,10 +110,11 @@ VpgExceptionHandler(
 
 		return EXCEPTION_CONTINUE_EXECUTION;
 	}
-
+	
 	//
-	// #DB Was possibly signaled from VPGATHER instruction,
-	// this would indicate that our test address will incur a fault if accessed.
+	// The VPGATHER instructions will signal a #DB if the test address will incur a fault.
+	// For this reason we must single step until this instruction has either completed execution,
+	// or has single stepped twice on the same instruction(in which case the #DB was signaled).
 	//
 	if ( ExceptionRecord->ExceptionCode == STATUS_SINGLE_STEP )
 	{
@@ -271,4 +272,5 @@ VpgIsAddressAccessible(
 
 	return ( TlsAddressNotValid == FALSE );
 }
+
 #pragma optimize( pop )
