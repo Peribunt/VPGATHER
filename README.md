@@ -42,3 +42,6 @@ main(
 	return 0l;
 }
 ```
+
+## Credits
+Full credit to [@sixtyvividtails](https://x.com/sixtyvividtails) for bringing this behavior to people's attention, including mine.
